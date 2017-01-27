@@ -22,7 +22,7 @@ namespace TheATM.Models
             return Console.ReadLine();
         }
 
-        public double Withdrawal(double InitialBalance)
+        public double Withdrawal()
         {
             int choice = int.Parse(TransRead("> "));
 
@@ -52,7 +52,7 @@ namespace TheATM.Models
             return Debit;
         }
 
-        public double Deposit(double InitialBalance)
+        public double Deposit()
         {
             Console.WriteLine("Enter the amount you want to deposit: ");
             double amount = double.Parse(TransRead("> "));
@@ -62,6 +62,23 @@ namespace TheATM.Models
             return Credit;
         }
 
+        public double TotalBalance(double Debit, double Credit)
+        {
+            if (Credit > 0)
+            {
+                AvailableBalance += Credit;
+            }
+            else if (Debit < AvailableBalance)
+            {
+                AvailableBalance -= Debit;
+            }
+            else
+            {
+                Console.WriteLine("The amount you have chosen to withdrawal will result in an overdraft and cannot take place. ");
+                Console.WriteLine("We apologize for the inconvenience. ");
+            }
 
+            return AvailableBalance;
+        }
     }
 }

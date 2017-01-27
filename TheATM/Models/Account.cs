@@ -11,8 +11,14 @@ namespace TheATM.Models
         public int Id { get; set; }
         public double InitialBalance { get; set; }
         public int PinNo { get; set; }
-        public int AccountNo { get; set; }
-        public int RoutingNo { get; set; }
+        public string RoutingNo { get; set; }
         public User User { get; set; }
+
+        public static string GenerateRoutingNumber()
+        {
+            Random RoutingNo = new Random();
+
+            return RoutingNo.Next(0, 100000000).ToString("D10");
+        }
     }
 }

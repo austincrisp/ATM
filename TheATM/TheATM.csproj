@@ -69,6 +69,14 @@
     <Compile Include="Migrations\201701262221562_AddedAvailableBalanceColumnToTransactions.Designer.cs">
       <DependentUpon>201701262221562_AddedAvailableBalanceColumnToTransactions.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701271624584_AlteredAccountColumnTypes.cs" />
+    <Compile Include="Migrations\201701271624584_AlteredAccountColumnTypes.Designer.cs">
+      <DependentUpon>201701271624584_AlteredAccountColumnTypes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701271631496_RemovedAccountNoFromAccounts.cs" />
+    <Compile Include="Migrations\201701271631496_RemovedAccountNoFromAccounts.Designer.cs">
+      <DependentUpon>201701271631496_RemovedAccountNoFromAccounts.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\Transaction.cs" />
@@ -92,6 +100,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701262221562_AddedAvailableBalanceColumnToTransactions.resx">
       <DependentUpon>201701262221562_AddedAvailableBalanceColumnToTransactions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701271624584_AlteredAccountColumnTypes.resx">
+      <DependentUpon>201701271624584_AlteredAccountColumnTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701271631496_RemovedAccountNoFromAccounts.resx">
+      <DependentUpon>201701271631496_RemovedAccountNoFromAccounts.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
