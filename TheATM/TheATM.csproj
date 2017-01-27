@@ -61,6 +61,14 @@
     <Compile Include="Migrations\201701262102258_AddedColumnsToTransactions.Designer.cs">
       <DependentUpon>201701262102258_AddedColumnsToTransactions.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701262220232_RemovedBalanceColumnFromTransactions.cs" />
+    <Compile Include="Migrations\201701262220232_RemovedBalanceColumnFromTransactions.Designer.cs">
+      <DependentUpon>201701262220232_RemovedBalanceColumnFromTransactions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701262221562_AddedAvailableBalanceColumnToTransactions.cs" />
+    <Compile Include="Migrations\201701262221562_AddedAvailableBalanceColumnToTransactions.Designer.cs">
+      <DependentUpon>201701262221562_AddedAvailableBalanceColumnToTransactions.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\Transaction.cs" />
@@ -78,6 +86,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701262102258_AddedColumnsToTransactions.resx">
       <DependentUpon>201701262102258_AddedColumnsToTransactions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701262220232_RemovedBalanceColumnFromTransactions.resx">
+      <DependentUpon>201701262220232_RemovedBalanceColumnFromTransactions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701262221562_AddedAvailableBalanceColumnToTransactions.resx">
+      <DependentUpon>201701262221562_AddedAvailableBalanceColumnToTransactions.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

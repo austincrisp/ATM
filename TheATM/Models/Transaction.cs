@@ -12,7 +12,7 @@ namespace TheATM.Models
         public int AccountId { get; set; }
         public double Debit { get; set; }
         public double Credit { get; set; }
-        public double Balance { get; set; }
+        public double AvailableBalance { get; set; }
 
         public virtual Account Account { get; set; }
 
@@ -34,21 +34,22 @@ namespace TheATM.Models
             switch (choice)
             {
                 case 1:
-                    Balance -= 10;
+                    Debit -= 10;
                     break;
                 case 2:
-                    Balance -= 20;
+                    Debit -= 20;
                     break;
                 case 3:
-                    Balance -= 50;
+                    Debit -= 50;
                     break;
                 case 4:
-                    Balance -= 100;
+                    Debit -= 100;
                     break;
                 default:
                     break;
             }
-            return Balance;
+
+            return Debit;
         }
 
         public double Deposit(double InitialBalance)
@@ -56,9 +57,11 @@ namespace TheATM.Models
             Console.WriteLine("Enter the amount you want to deposit: ");
             double amount = double.Parse(TransRead("> "));
 
-            InitialBalance += amount;
+            Credit = amount;
 
-            return Balance;
+            return Credit;
         }
+
+
     }
 }

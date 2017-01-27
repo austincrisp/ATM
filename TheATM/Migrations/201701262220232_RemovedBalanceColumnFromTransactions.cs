@@ -1,0 +1,18 @@
+namespace TheATM.Migrations
+{
+    using System;
+    using System.Data.Entity.Migrations;
+    
+    public partial class RemovedBalanceColumnFromTransactions : DbMigration
+    {
+        public override void Up()
+        {
+            DropColumn("dbo.Transactions", "Balance");
+        }
+        
+        public override void Down()
+        {
+            AddColumn("dbo.Transactions", "Balance", c => c.Double(nullable: false));
+        }
+    }
+}
