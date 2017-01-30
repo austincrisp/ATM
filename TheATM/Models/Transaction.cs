@@ -24,12 +24,12 @@ namespace TheATM.Models
 
         public double Withdrawal()
         {
-            int choice = int.Parse(TransRead("> "));
-
+            Console.WriteLine("How much would you like to withdraw? ");
             Console.WriteLine("1) $10");
             Console.WriteLine("2) $20");
             Console.WriteLine("3) $50");
             Console.WriteLine("4) $100");
+            int choice = int.Parse(TransRead("> "));
 
             switch (choice)
             {
@@ -62,7 +62,7 @@ namespace TheATM.Models
             return Credit;
         }
 
-        public double TotalBalance(double Debit, double Credit)
+        public double TotalBalance(double Credit)
         {
             if (Credit > 0)
             {
