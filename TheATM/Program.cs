@@ -84,14 +84,18 @@ namespace TheATM
                 switch (action)
                 {
                     case 1:
+                        instance.Credit = 0;
                         instance.Withdrawal();
-                        instance.TotalBalance(instance.Credit, instance.Debit);
+                        instance.SubtractFromBalance(instance.Debit);
                         break;
                     case 2:
+                        instance.Debit = 0;
                         instance.Deposit();
-                        instance.TotalBalance(instance.Credit, instance.Debit);
+                        instance.AddToBalance(instance.Credit);
                         break;
                     case 3:
+                        instance.Credit = 0;
+                        instance.Debit = 0;
                         Console.WriteLine($"Available Balance: {instance.AvailableBalance}");
                         break;
                     case 4:

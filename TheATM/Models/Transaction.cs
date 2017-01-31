@@ -34,16 +34,16 @@ namespace TheATM.Models
             switch (choice)
             {
                 case 1:
-                    Debit -= 10;
+                    Debit = 10;
                     break;
                 case 2:
-                    Debit -= 20;
+                    Debit = 20;
                     break;
                 case 3:
-                    Debit -= 50;
+                    Debit = 50;
                     break;
                 case 4:
-                    Debit -= 100;
+                    Debit = 100;
                     break;
                 default:
                     break;
@@ -62,13 +62,19 @@ namespace TheATM.Models
             return Credit;
         }
 
-        public double TotalBalance(double Credit, double Debit)
+        public double AddToBalance(double Credit)
         {
             if (Credit > 0)
             {
                 AvailableBalance += Credit;
             }
-            else if (Debit < AvailableBalance)
+
+            return AvailableBalance;
+        }
+
+        public double SubtractFromBalance(double Debit)
+        {
+            if (Debit < AvailableBalance)
             {
                 AvailableBalance -= Debit;
             }
