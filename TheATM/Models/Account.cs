@@ -12,7 +12,6 @@ namespace TheATM.Models
         public double InitialBalance { get; set; }
         public int PinNo { get; set; }
         public string RoutingNo { get; set; }
-        public User User { get; set; }
 
         public static string GenerateRoutingNumber()
         {

@@ -19,10 +19,13 @@ namespace TheATM
         {
             using (var db = new ATMContext())
             {
-                while (true)
+                bool active = true;
+
+                while (active)
                 {
                     Console.WriteLine("1) Login");
                     Console.WriteLine("2) Create a username and password and setup initial account");
+                    Console.WriteLine("3) Exit machine");
                     int initialChoice = int.Parse(Read("> "));
 
                     switch (initialChoice)
@@ -38,7 +41,7 @@ namespace TheATM
                                     Console.Clear();
                                     Console.WriteLine($"Welcome {user.FullName} \n");
                                     Console.WriteLine("What would you like to do? ");
-                                    DoTransaction(db);
+                                    DoTransaction(db, user);
                                 }
                                 else
                                 {
@@ -49,7 +52,9 @@ namespace TheATM
                             break;
                         case 2:
                             CreateUser(db);
-                            CreateAccount(db);
+                            break;
+                        case 3:
+                            active = false;
                             break;
                         default:
                             break;
@@ -58,80 +63,53 @@ namespace TheATM
             }
         }
 
-        private static void DoTransaction(ATMContext db)
+        private static void DoTransaction(ATMContext db, User user)
         {
             Transaction instance = new Transaction();
 
             var allTransactions = db.Transactions.Count();
             Console.WriteLine($"{allTransactions} transactions in DB");
 
-            foreach (var account in db.Accounts)
+            var accountInstance = user.Account;
+            int action = 0;
+
+            while (action != 4)
             {
-                Console.WriteLine($"{account.Id} - {account.User.FullName}");
+                Console.WriteLine("1) Withdrawal");
+                Console.WriteLine("2) Deposit");
+                Console.WriteLine("3) View Balance");
+                Console.WriteLine("4) Exit");
+                action = int.Parse(Read("> "));
+
+                switch (action)
+                {
+                    case 1:
+                        instance.Withdrawal();
+                        instance.TotalBalance(instance.Credit, instance.Debit);
+                        break;
+                    case 2:
+                        instance.Deposit();
+                        instance.TotalBalance(instance.Credit, instance.Debit);
+                        break;
+                    case 3:
+                        Console.WriteLine($"Available Balance: {instance.AvailableBalance}");
+                        break;
+                    case 4:
+                        break;
+                    default:
+                        break;
+                }
+
+                Transaction myTransaction = new Transaction
+                {
+                    Account = accountInstance,
+                    Debit = instance.Debit,
+                    Credit = instance.Credit,
+                    AvailableBalance = instance.AvailableBalance
+                };
+
+                db.Transactions.Add(myTransaction);
             }
-
-            var accountId = int.Parse(Read("Account ID? "));
-            var accountInstance = db.Accounts.Where(u => u.Id == accountId).First();
-
-            Console.WriteLine("1) Withdrawal");
-            Console.WriteLine("2) Deposit");
-            int action = int.Parse(Read("> "));
-
-            switch (action)
-            {
-                case 1:
-                    instance.Withdrawal();
-                    instance.TotalBalance(instance.Credit);
-                    Console.WriteLine($"Available Balance: {instance.AvailableBalance}");
-                    break;
-                case 2:
-                    instance.Deposit();
-                    instance.TotalBalance(instance.Credit);
-                    Console.WriteLine($"Available Balance: {instance.AvailableBalance}");
-                    break;
-                default:
-                    break;
-            }
-
-            Transaction myTransaction = new Transaction
-            {
-                Account = accountInstance,
-                Debit = instance.Debit,
-                Credit = instance.Credit,
-                AvailableBalance = instance.AvailableBalance
-            };
-
-            db.Transactions.Add(myTransaction);
-        }
-
-        private static void CreateAccount(ATMContext db)
-        {
-            var allAccounts = db.Accounts.Count();
-            Console.WriteLine($"{allAccounts} accounts in DB");
-
-            foreach (var user in db.Users)
-            {
-                Console.WriteLine($"{user.Id} - {user.FullName}");
-            }
-
-            var userId = int.Parse(Read("User ID? "));
-            var userInstance = db.Users.Where(u => u.Id == userId).First();
-
-            double initialBalance = double.Parse(Read("Please enter the initial balance of this account: "));
-            int pinNo = int.Parse(Read("Please enter a 4-digit pin number for this account: "));
-            string routingNo = Account.GenerateRoutingNumber();
-            Console.WriteLine($"Here is your routing number: {routingNo}");
-
-            Account myAccount = new Account
-            {
-                User = userInstance,
-                InitialBalance = initialBalance,
-                PinNo = pinNo,
-                RoutingNo = routingNo
-            };
-
-            db.Accounts.Add(myAccount);
-            db.SaveChanges();
         }
 
         private static void CreateUser(ATMContext db)
@@ -147,6 +125,11 @@ namespace TheATM
             var dob = Read("Enter your date of birth: ");
             var usercreated = DateTime.Now;
 
+            Account myAccount = new Account();
+
+            db.Accounts.Add(myAccount);
+            db.SaveChanges();
+
             User myUser = new User
             {
                 UserName = username,
@@ -155,7 +138,8 @@ namespace TheATM
                 Address = address,
                 Phone = phone,
                 DateOfBirth = dob,
-                UserCreated = usercreated
+                UserCreated = usercreated,
+                Account = myAccount
             };
 
             db.Users.Add(myUser);

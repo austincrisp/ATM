@@ -77,6 +77,10 @@
     <Compile Include="Migrations\201701271631496_RemovedAccountNoFromAccounts.Designer.cs">
       <DependentUpon>201701271631496_RemovedAccountNoFromAccounts.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701312005463_ChangedForeignKeyBetweenUserAndAccount.cs" />
+    <Compile Include="Migrations\201701312005463_ChangedForeignKeyBetweenUserAndAccount.Designer.cs">
+      <DependentUpon>201701312005463_ChangedForeignKeyBetweenUserAndAccount.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\Transaction.cs" />
@@ -106,6 +110,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701271631496_RemovedAccountNoFromAccounts.resx">
       <DependentUpon>201701271631496_RemovedAccountNoFromAccounts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701312005463_ChangedForeignKeyBetweenUserAndAccount.resx">
+      <DependentUpon>201701312005463_ChangedForeignKeyBetweenUserAndAccount.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

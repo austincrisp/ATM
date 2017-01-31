@@ -62,7 +62,7 @@ namespace TheATM.Models
             return Credit;
         }
 
-        public double TotalBalance(double Credit)
+        public double TotalBalance(double Credit, double Debit)
         {
             if (Credit > 0)
             {

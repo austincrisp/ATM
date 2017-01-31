@@ -17,5 +17,8 @@ namespace TheATM.Models
         public string Phone { get; set; }
         public string DateOfBirth { get; set; }
         public DateTime UserCreated { get; set; }
+        public int AccountId { get; set; }
+
+        public virtual Account Account { get; set; }
     }
 }
